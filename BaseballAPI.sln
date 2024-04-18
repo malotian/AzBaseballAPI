@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.5.002.0
+VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzServerless", "AzServerless.csproj", "{74DD2B09-FED1-4C62-BBB5-48219C091F0D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BaseballAPI", "BaseballAPI.csproj", "{AF8F9831-84B6-4541-B99D-02CB25E688D7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{74DD2B09-FED1-4C62-BBB5-48219C091F0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{74DD2B09-FED1-4C62-BBB5-48219C091F0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{74DD2B09-FED1-4C62-BBB5-48219C091F0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{74DD2B09-FED1-4C62-BBB5-48219C091F0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF8F9831-84B6-4541-B99D-02CB25E688D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF8F9831-84B6-4541-B99D-02CB25E688D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF8F9831-84B6-4541-B99D-02CB25E688D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF8F9831-84B6-4541-B99D-02CB25E688D7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {438FED38-5D34-45CA-B071-E608A20ABB68}
+		SolutionGuid = {06884215-26F5-42C2-9B02-AA510C23F7E8}
 	EndGlobalSection
 EndGlobal
