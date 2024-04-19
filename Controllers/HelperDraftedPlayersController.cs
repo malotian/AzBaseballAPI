@@ -10,7 +10,7 @@ namespace CView.BaseballAPI
         [HttpGet(Name = "GetLLWS")]
         public dynamic Get()
         {
-            return HelperLLWS.Get(HttpContext.Request.Query);
+            //return HelperLLWS.Get(HttpContext.Request.Query);
         }
     }
 }                                                                                    
