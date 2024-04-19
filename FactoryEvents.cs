@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace CView.BaseballAPI {
@@ -85,6 +86,50 @@ namespace CView.BaseballAPI {
                 }
             }
         }
+
+        public List<Event> GetEvents(string ageGroup, string sport) {
+            List<Event> events = new List<Event>();
+
+            using (SqlConnection connection = FactoryDB.Conn) {
+                // connection.Open();
+
+                string storedProcedureName = (ageGroup == "alums") ? "[dugout].[dbo].[sp_get_ctd_sched]" : "[dugout].[dbo].[sp_get_tryout2020_sched]";
+
+                using (SqlCommand cmd = new SqlCommand(storedProcedureName, connection)) {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@sport", sport);
+
+                    if (ageGroup != "alums") {
+                        cmd.Parameters.AddWithValue("@ageGroup", ageGroup);
+                    }
+
+                    using (SqlDataReader reader = cmd.ExecuteReader()) {
+                        while (reader.Read()) {
+                            Event eventObj = new Event {
+                                LocationAddress = reader["location_address"].ToString(),
+                                SellablePublic = (bool)reader["sellable_public"],
+                                EventNote = reader["event_note"].ToString(),
+                                EventStartDate = (DateTime)reader["event_start_date"],
+                                EventStartWeekday = reader["event_start_weekday"].ToString(),
+                                LocationState = reader["location_state"].ToString(),
+                                LocationZip = reader["location_zip"].ToString(),
+                                MarketCity = reader["market_city"].ToString(),
+                                LocationName = reader["location_name"].ToString(),
+                                AvailTimeSlotStart = reader["avail_time_slot_start"].ToString(),
+                                AvailTimeSlotEnd = reader["avail_time_slot_end"].ToString(),
+                                G = reader["g"].ToString()
+                            };
+
+                            events.Add(eventObj);
+                        }
+                    }
+                }
+            }
+
+            return events;
+        }
+
 
         // Other methods (SetRelatedEvents, GetEventsByMonth, GetEventsByMonthProc, GetEventZipsByLocation) can be similarly converted.
     }

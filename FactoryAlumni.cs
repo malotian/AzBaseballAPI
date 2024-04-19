@@ -55,7 +55,7 @@ namespace CView.BaseballAPI {
             ORDER BY player_last_name, player_first_name, player_city, player_state";
 
             using (SqlConnection connection = FactoryDB.Conn) {
-                connection.Open();
+                // connection.Open();
                 SqlCommand command = new SqlCommand(collegeQuery, connection);
                 SqlDataReader reader = command.ExecuteReader();
 
@@ -89,7 +89,7 @@ namespace CView.BaseballAPI {
             ORDER BY dbo.CastAsInt(round_order), dbo.CastAsInt(pick_selected), player_first_name, player_last_name";
 
             using (SqlConnection connection = FactoryDB.Conn) {
-                connection.Open();
+                // connection.Open();
                 SqlCommand command = new SqlCommand(query, connection);
                 SqlDataReader reader = command.ExecuteReader();
 

@@ -38,7 +38,7 @@ namespace CView.BaseballAPI {
                                 ORDER BY dbo.CastAsInt(player_number), player_first_name, player_last_name";
 
             using (SqlConnection connection = FactoryDB.Conn) {
-                connection.Open();
+                // // connection.Open();
                 SqlCommand command = new SqlCommand(top100Query, connection);
                 command.Parameters.AddWithValue("@EventID", eventId);
 

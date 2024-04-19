@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\malotian\\cview\\BaseballAPI\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{AF8F9831-84B6-4541-B99D-02CB25E688D7}|BaseballAPI.csproj|c:\\malotian\\cview\\baseballapi\\controllers\\helperdraftedplayerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF8F9831-84B6-4541-B99D-02CB25E688D7}|BaseballAPI.csproj|solutionrelative:controllers\\helperdraftedplayerscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF8F9831-84B6-4541-B99D-02CB25E688D7}|BaseballAPI.csproj|c:\\malotian\\cview\\baseballapi\\factoryrosters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF8F9831-84B6-4541-B99D-02CB25E688D7}|BaseballAPI.csproj|solutionrelative:factoryrosters.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF8F9831-84B6-4541-B99D-02CB25E688D7}|BaseballAPI.csproj|c:\\malotian\\cview\\baseballapi\\factoryevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF8F9831-84B6-4541-B99D-02CB25E688D7}|BaseballAPI.csproj|solutionrelative:factoryevents.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{AF8F9831-84B6-4541-B99D-02CB25E688D7}|BaseballAPI.csproj|c:\\malotian\\cview\\baseballapi\\factoryalumni.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AF8F9831-84B6-4541-B99D-02CB25E688D7}|BaseballAPI.csproj|solutionrelative:factoryalumni.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AF8F9831-84B6-4541-B99D-02CB25E688D7}|BaseballAPI.csproj|c:\\malotian\\cview\\baseballapi\\event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AF8F9831-84B6-4541-B99D-02CB25E688D7}|BaseballAPI.csproj|solutionrelative:event.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -19,12 +35,64 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "HelperDraftedPlayersController.cs",
+              "DocumentMoniker": "C:\\malotian\\cview\\BaseballAPI\\Controllers\\HelperDraftedPlayersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HelperDraftedPlayersController.cs",
+              "ToolTip": "C:\\malotian\\cview\\BaseballAPI\\Controllers\\HelperDraftedPlayersController.cs",
+              "RelativeToolTip": "Controllers\\HelperDraftedPlayersController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-19T03:30:55.695Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "FactoryRosters.cs",
+              "DocumentMoniker": "C:\\malotian\\cview\\BaseballAPI\\FactoryRosters.cs",
+              "RelativeDocumentMoniker": "FactoryRosters.cs",
+              "ToolTip": "C:\\malotian\\cview\\BaseballAPI\\FactoryRosters.cs",
+              "RelativeToolTip": "FactoryRosters.cs",
+              "ViewState": "AQIAABEAAAAAAAAAAAAowCgAAAAoAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-19T03:29:10.243Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "FactoryEvents.cs",
+              "DocumentMoniker": "C:\\malotian\\cview\\BaseballAPI\\FactoryEvents.cs",
+              "RelativeDocumentMoniker": "FactoryEvents.cs",
+              "ToolTip": "C:\\malotian\\cview\\BaseballAPI\\FactoryEvents.cs",
+              "RelativeToolTip": "FactoryEvents.cs",
+              "ViewState": "AQIAAEYAAAAAAAAAAAAowF0AAAAlAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-19T03:27:24.83Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Event.cs",
+              "DocumentMoniker": "C:\\malotian\\cview\\BaseballAPI\\Event.cs",
+              "RelativeDocumentMoniker": "Event.cs",
+              "ToolTip": "C:\\malotian\\cview\\BaseballAPI\\Event.cs",
+              "RelativeToolTip": "Event.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAAWAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-04-19T03:26:17.128Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
               "Title": "FactoryAlumni.cs",
               "DocumentMoniker": "C:\\malotian\\cview\\BaseballAPI\\FactoryAlumni.cs",
               "RelativeDocumentMoniker": "FactoryAlumni.cs",
               "ToolTip": "C:\\malotian\\cview\\BaseballAPI\\FactoryAlumni.cs",
               "RelativeToolTip": "FactoryAlumni.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAGUAAABAAAAA",
+              "ViewState": "AQIAAEQAAAAAAAAAAAAowFsAAAAlAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-04-19T02:58:26.228Z",
               "EditorCaption": ""
