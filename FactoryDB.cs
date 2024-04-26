@@ -30,7 +30,7 @@ namespace CView.BaseballAPI {
 
         ~FactoryDB() {
             if (Conn != null && Conn.State == System.Data.ConnectionState.Open) {
-                Conn.Close();
+               // Conn.Close();
             }
         }
 
