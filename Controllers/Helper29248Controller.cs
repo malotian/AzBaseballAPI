@@ -8,9 +8,10 @@ namespace CView.BaseballAPI
     {
 
         [HttpGet(Name = "GetInstrictors")]
-        public IEnumerable<Instructor> Get()
+        public List<object> Get()
         {
-            return Helper29248.Get();
+            Helper29248 helper29248 = new Helper29248();
+            return helper29248.Get();
         }
     }
 }

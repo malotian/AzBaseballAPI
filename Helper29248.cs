@@ -2,10 +2,14 @@ using System.Data.SqlClient;
 
 namespace CView.BaseballAPI {
     public class Helper29248 {
-        public static List<Instructor> Get() {
-            var conn = DB.Instance.GetConnection();
+        public FactoryDB FactoryDB { get; }
+        public Helper29248() {
+            FactoryDB = new FactoryDB();
+        }
+        public List<object> Get() {
+            var conn = FactoryDB.Conn;
 
-            List<Instructor> instructors = new List<Instructor>();
+            List<object> instructors = new List<object>();
             if (conn != null && conn.State == System.Data.ConnectionState.Open) {
                 using (SqlCommand cmd = new SqlCommand()) {
                     cmd.Connection = conn;
@@ -17,17 +21,14 @@ namespace CView.BaseballAPI {
                                             order by instructor_last_name, instructor_first_name";
                     using (SqlDataReader reader = cmd.ExecuteReader()) {
                         while (reader.Read()) {
-                            Instructor instructor = new Instructor {
-                                PkInstructor = reader["pk_instructor"].ToString(),
-                                FirstName = reader["instructor_first_name"].ToString(),
-                                LastName = reader["instructor_last_name"].ToString(),
-                                Expertise = reader["expertise"].ToString(),
-                                InstructorBio = reader["instructor_bio"].ToString(),
-                                GeneralAvailability = reader["general_availability"].ToString()
-                            };
-                            instructors.Add(instructor);
-
-                            Console.WriteLine(instructor);
+                            instructors.Add( new  {
+                                pk_instructor = reader["pk_instructor"].ToString(),
+                                instructor_first_name = reader["instructor_first_name"].ToString(),
+                                instructor_last_name = reader["instructor_last_name"].ToString(),
+                                expertise = reader["expertise"].ToString(),
+                                instructor_bio = reader["instructor_bio"].ToString(),
+                                general_availability = reader["general_availability"].ToString()
+                            });
                         }
                     }
                 }

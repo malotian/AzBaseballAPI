@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
+using System.Xml.Linq;
 
 namespace CView.BaseballAPI {
 
@@ -13,11 +14,12 @@ namespace CView.BaseballAPI {
 
         private static readonly string _dbhost = Environment.GetEnvironmentVariable("DB_HOST") ?? "4.157.175.137";
         private static readonly string _dbname = Environment.GetEnvironmentVariable("DB_NAME") ?? "dugout";
-        private static readonly string _dbuser = Environment.GetEnvironmentVariable("DB_USER") ?? "harjinder";
-        private static readonly string _dbpwd = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "Dutch72reappear91caches";
+        private static readonly string _dbuser = Environment.GetEnvironmentVariable("DB_USER") ?? "FA.WpUser"; //"harjinder";
+        private static readonly string _dbpwd = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "8HzKrwf39Srj"; //"Dutch72reappear91caches";
 
         public FactoryDB(bool newLink = false) {
-            Conn = new SqlConnection($"Server={_dbhost};Database={_dbname};User Id={_dbuser};Password={_dbpwd};");
+            string connectionString = $"Server={_dbhost};Database={_dbname};User Id={_dbuser};Password={_dbpwd};Encrypt=true;TrustServerCertificate=true;";
+            Conn = new SqlConnection(connectionString);
             try {
                 Conn.Open();
             } catch (SqlException e) {
