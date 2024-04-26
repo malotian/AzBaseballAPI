@@ -10,7 +10,7 @@ namespace CView.BaseballAPI {
         public List<Player> AllAmericanRoster { get; private set; } = new List<Player>();
         public List<Player> AllAmericanALRoster { get; private set; } = new List<Player>();
         public List<Player> AllAmericanNLRoster { get; private set; } = new List<Player>();
-        public List<Player> PreSeasonRoster { get; private set; } = new List<Player>();
+        public List<object> PreSeasonRoster { get; private set; } = new List<object>();
 
         public FactoryRosters() {
             FactoryDB = new FactoryDB();
@@ -143,12 +143,12 @@ namespace CView.BaseballAPI {
 
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read()) {
-                    Player player = new Player {
-                        PlayerFirstName = reader["player_first_name"].ToString(),
-                        PlayerLastName = reader["player_last_name"].ToString(),
-                        Hometown = reader["hometown"].ToString(),
-                        GradYear = reader["grad_year"].ToString(),
-                        HighSchool = reader["high_school"].ToString()
+                    var player = new {
+                        player_first_name = reader["player_first_name"].ToString(),
+                        player_last_name = reader["player_last_name"].ToString(),
+                        hometown = reader["hometown"].ToString(),
+                        grad_year = reader["grad_year"].ToString(),
+                        high_school = reader["high_school"].ToString()
                     };
                     PreSeasonRoster.Add(player);
                 }
