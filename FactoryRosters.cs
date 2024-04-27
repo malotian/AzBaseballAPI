@@ -1,15 +1,12 @@
-﻿using CView.BaseballAPI;
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 
 namespace CView.BaseballAPI {
     public class FactoryRosters {
         public FactoryDB FactoryDB { get; private set; }
-        public List<Player> Top100Roster { get; private set; } = new List<Player>();
-        public List<Player> AllAmericanRoster { get; private set; } = new List<Player>();
-        public List<Player> AllAmericanALRoster { get; private set; } = new List<Player>();
-        public List<Player> AllAmericanNLRoster { get; private set; } = new List<Player>();
+        public List<object> Top100Roster { get; private set; } = new List<object>();
+        public List<object> AllAmericanRoster { get; private set; } = new List<object>();
+        public List<object> AllAmericanALRoster { get; private set; } = new List<object>();
+        public List<object> AllAmericanNLRoster { get; private set; } = new List<object>();
         public List<object> PreSeasonRoster { get; private set; } = new List<object>();
 
         public FactoryRosters() {
@@ -44,29 +41,29 @@ namespace CView.BaseballAPI {
 
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read()) {
-                    Player player = new Player {
-                        PublicPlayerPageId = reader["PublicPlayerPageId"].ToString(),
-                        PlayerFirstName = reader["player_first_name"].ToString(),
-                        PlayerLastName = reader["player_last_name"].ToString(),
-                        PlayerCity = reader["player_city"].ToString(),
-                        PlayerState = reader["player_state"].ToString(),
-                        PlayerId = reader["playerid"].ToString(),
-                        GradYear = reader["grad_year"].ToString(),
-                        CollegeCommitment = reader["college_commitment"].ToString(),
-                        HighSchool = reader["high_school"].ToString(),
-                        PlayerHeight = reader["player_height"].ToString(),
-                        PlayerWeight = reader["player_weight"].ToString(),
-                        BatsName = reader["bats_name"].ToString(),
-                        ThrowsName = reader["throws_name"].ToString(),
-                        PlayerNumber = reader["player_number"].ToString(),
-                        PlayerEventId = reader["player_event_id"].ToString(),
-                        Position1 = reader["position1"].ToString(),
-                        Position2 = reader["position2"].ToString(),
-                        DisableEvaluation = reader["disable_evaluation"].ToString(),
-                        Overall = reader["overall"].ToString(),
-                        DisableVideo = reader["disable_video"].ToString(),
-                        CdnUrl = reader["cdn_url"].ToString(),
-                        HeadshotUrl = $"https://members.baseballfactory.com/assets/PlayerHeadshots/{reader["player_last_name"].ToString()[0]}/{reader["player_first_name"].ToString()}{reader["player_last_name"].ToString()}{reader["playerid"].ToString()}.jpg"
+                    var player = new {
+                        public_player_page_id = reader["PublicPlayerPageId"].ToString(),
+                        player_first_name = reader["player_first_name"].ToString(),
+                        player_last_name = reader["player_last_name"].ToString(),
+                        player_city = reader["player_city"].ToString(),
+                        player_state = reader["player_state"].ToString(),
+                        player_id = reader["playerid"].ToString(),
+                        grad_year = reader["grad_year"].ToString(),
+                        college_commitment = reader["college_commitment"].ToString(),
+                        high_school = reader["high_school"].ToString(),
+                        player_height = reader["player_height"].ToString(),
+                        player_weight = reader["player_weight"].ToString(),
+                        bats_name = reader["bats_name"].ToString(),
+                        throws_name = reader["throws_name"].ToString(),
+                        player_number = reader["player_number"].ToString(),
+                        player_event_id = reader["player_event_id"].ToString(),
+                        position1 = reader["position1"].ToString(),
+                        position2 = reader["position2"].ToString(),
+                        disable_evaluation = reader["disable_evaluation"].ToString(),
+                        overall = reader["overall"].ToString(),
+                        disable_video = reader["disable_video"].ToString(),
+                        cdn_url = reader["cdn_url"].ToString(),
+                        headshot_url = $"https://members.baseballfactory.com/assets/PlayerHeadshots/{reader["player_last_name"].ToString()[0]}/{reader["player_first_name"].ToString()}{reader["player_last_name"].ToString()}{reader["playerid"].ToString()}.jpg"
                     };
                     Top100Roster.Add(player);
                 }
@@ -92,23 +89,23 @@ namespace CView.BaseballAPI {
 
                 SqlDataReader reader = command.ExecuteReader();
                 while (reader.Read()) {
-                    Player player = new Player {
-                        Team = reader["team"].ToString(),
-                        PlayerNumber = reader["player_number"].ToString(),
-                        PlayerId = reader["playerid"].ToString(),
-                        PlayerLastName = reader["player_last_name"].ToString(),
-                        PlayerFirstName = reader["player_first_name"].ToString(),
-                        Position1 = reader["position1"].ToString(),
-                        Position2 = reader["position2"].ToString(),
-                        Hometown = reader["hometown"].ToString(),
-                        HighSchool = reader["high_school"].ToString(),
-                        CollegeCommitment = reader["college_commitment"].ToString(),
-                        PlayerHeight = reader["player_height"].ToString(),
-                        PlayerWeight = reader["player_weight"].ToString(),
-                        GradYear = reader["grad_year"].ToString(),
-                        Overall = reader["overall"].ToString().Replace('�', '\''),
-                        DummyField1 = reader["dummy_field1"].ToString(),
-                        HeadshotUrl = $"https://members.baseballfactory.com/assets/PlayerHeadshots/{reader["player_last_name"].ToString()[0]}/{reader["player_first_name"].ToString()}{reader["player_last_name"].ToString()}{reader["playerid"].ToString()}.jpg"
+                    var player = new {
+                        team = reader["team"].ToString(),
+                        player_number = reader["player_number"].ToString(),
+                        player_id = reader["playerid"].ToString(),
+                        player_last_name = reader["player_last_name"].ToString(),
+                        player_first_name = reader["player_first_name"].ToString(),
+                        position1 = reader["position1"].ToString(),
+                        position2 = reader["position2"].ToString(),
+                        hometown = reader["hometown"].ToString(),
+                        high_school = reader["high_school"].ToString(),
+                        college_commitment = reader["college_commitment"].ToString(),
+                        player_height = reader["player_height"].ToString(),
+                        player_weight = reader["player_weight"].ToString(),
+                        grad_year = reader["grad_year"].ToString(),
+                        overall = reader["overall"].ToString().Replace('�', '\''),
+                        dummy_field1 = reader["dummy_field1"].ToString(),
+                        headshot_url = $"https://members.baseballfactory.com/assets/PlayerHeadshots/{reader["player_last_name"].ToString()[0]}/{reader["player_first_name"].ToString()}{reader["player_last_name"].ToString()}{reader["playerid"].ToString()}.jpg"
                     };
                     AllAmericanRoster.Add(player);
                 }
@@ -116,8 +113,8 @@ namespace CView.BaseballAPI {
         }
 
         public void SetAllALNLRosters() {
-            foreach (var player in AllAmericanRoster) {
-                switch (player.Team) {
+            foreach (dynamic player in AllAmericanRoster) {
+                switch (player.team) {
                     case "American":
                         AllAmericanALRoster.Add(player);
                         break;

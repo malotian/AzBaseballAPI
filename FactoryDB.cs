@@ -1,7 +1,5 @@
-﻿using System;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Text.RegularExpressions;
-using System.Xml.Linq;
 
 namespace CView.BaseballAPI {
 
@@ -30,7 +28,7 @@ namespace CView.BaseballAPI {
 
         ~FactoryDB() {
             if (Conn != null && Conn.State == System.Data.ConnectionState.Open) {
-               // Conn.Close();
+                // Conn.Close();
             }
         }
 

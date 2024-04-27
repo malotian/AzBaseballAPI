@@ -21,7 +21,7 @@ namespace CView.BaseballAPI {
                                             order by instructor_last_name, instructor_first_name";
                     using (SqlDataReader reader = cmd.ExecuteReader()) {
                         while (reader.Read()) {
-                            instructors.Add( new  {
+                            instructors.Add(new {
                                 pk_instructor = reader["pk_instructor"].ToString(),
                                 instructor_first_name = reader["instructor_first_name"].ToString(),
                                 instructor_last_name = reader["instructor_last_name"].ToString(),

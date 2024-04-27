@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Data;
 using Newtonsoft.Json;
+using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
 namespace CView.BaseballAPI {

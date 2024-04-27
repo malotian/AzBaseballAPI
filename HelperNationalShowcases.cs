@@ -24,6 +24,11 @@ namespace CView.BaseballAPI {
         public List<object> GetShowcases(string ageGroup, string st) {
             List<object> events = new List<object>();
 
+            bool isValidAgeGroup = false; // Implement your logic to validate age group
+            bool isStatePage = !string.IsNullOrEmpty(st);
+            string stateAbbr = ""; // Implement logic to get state abbreviation based on st
+            bool isValidState = false; // Implement your logic to validate state abbreviation
+
             using (SqlConnection connection = FactoryDB.Conn) {
                 SqlCommand command = new SqlCommand("sp_get_national_showcases_sched", connection);
                 command.CommandType = CommandType.StoredProcedure;

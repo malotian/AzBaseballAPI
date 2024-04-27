@@ -1,21 +1,16 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace CView.BaseballAPI
-{
+namespace CView.BaseballAPI {
 
-    public class FactoryEvents
-    {
+    public class FactoryEvents {
         public FactoryDB FactoryDB { get; }
         public List<object> EventsByMonth { get; set; }
         public List<object> ProgramTypes { get; set; }
         public List<object> RelatedEvents { get; set; }
         public Dictionary<int, string> HtmlClassMap { get; }
 
-        public FactoryEvents()
-        {
+        public FactoryEvents() {
             FactoryDB = new FactoryDB();
             EventsByMonth = new List<object>();
             ProgramTypes = new List<object>();
@@ -33,8 +28,7 @@ namespace CView.BaseballAPI
             };
         }
 
-        public void SetAllEvents(bool isInvitePage = false, string locationState = "")
-        {
+        public void SetAllEvents(bool isInvitePage = false, string locationState = "") {
             locationState = FactoryDB.ConvertToAlphanumeric(locationState);
             DateTime currentDate = DateTime.Now;
             DateTime toDate = currentDate.AddMonths(11).AddDays(-currentDate.Day + 1).AddMonths(1).AddDays(-1);
@@ -81,60 +75,51 @@ namespace CView.BaseballAPI
             WHERE R = 1 
             ORDER BY event_start_date ASC";
 
-            using (SqlConnection connection = FactoryDB.Conn)
-            {
+            using (SqlConnection connection = FactoryDB.Conn) {
                 SqlCommand command = new SqlCommand(allEventsQuery, connection);
                 SqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read())
-                {
+                while (reader.Read()) {
                     // Process each event
                 }
             }
         }
 
-        public List<Event> GetEvents(string ageGroup, string sport)
-        {
-            List<Event> events = new List<Event>();
+        public List<object> GetEvents(string ageGroup, string sport) {
+            List<object> events = new List<object>();
 
-            using (SqlConnection connection = FactoryDB.Conn)
-            {
+            using (SqlConnection connection = FactoryDB.Conn) {
                 // connection.Open();
 
                 string storedProcedureName = (ageGroup == "alums") ? "[dugout].[dbo].[sp_get_ctd_sched]" : "[dugout].[dbo].[sp_get_tryout2020_sched]";
 
-                using (SqlCommand cmd = new SqlCommand(storedProcedureName, connection))
-                {
+                using (SqlCommand cmd = new SqlCommand(storedProcedureName, connection)) {
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@sport", sport);
 
-                    if (ageGroup != "alums")
-                    {
+                    if (ageGroup != "alums") {
                         cmd.Parameters.AddWithValue("@ageGroup", ageGroup);
                     }
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            Event eventObj = new Event
-                            {
-                                LocationAddress = reader["location_address"].ToString(),
-                                SellablePublic = (bool)reader["sellable_public"],
-                                EventNote = reader["event_note"].ToString(),
-                                EventStartDate = (DateTime)reader["event_start_date"],
-                                EventStartWeekday = reader["event_start_weekday"].ToString(),
-                                LocationState = reader["location_state"].ToString(),
-                                LocationZip = reader["location_zip"].ToString(),
-                                MarketCity = reader["market_city"].ToString(),
-                                LocationName = reader["location_name"].ToString(),
-                                AvailTimeSlotStart = reader["avail_time_slot_start"].ToString(),
-                                AvailTimeSlotEnd = reader["avail_time_slot_end"].ToString(),
-                                G = reader["g"].ToString()
-                            };
+                    using (SqlDataReader reader = cmd.ExecuteReader()) {
+                        while (reader.Read()) {
+                            var @event = new {
+                                location_address = reader["location_address"].ToString(),
+                                sellable_public = (bool)reader["sellable_public"],
+                                event_note = reader["event_note"].ToString(),
+                                event_start_date = (DateTime)reader["event_start_date"],
+                                event_start_weekday = reader["event_start_weekday"].ToString(),
+                                location_state = reader["location_state"].ToString(),
+                                location_zip = reader["location_zip"].ToString(),
+                                market_city = reader["market_city"].ToString(),
+                                location_name = reader["location_name"].ToString(),
+                                avail_time_slot_start = reader["avail_time_slot_start"].ToString(),
+                                avail_time_slot_end = reader["avail_time_slot_end"].ToString(),
+                                g = reader["g"].ToString()
 
-                            events.Add(eventObj);
+                            };
+                            events.Add(@event);
                         }
                     }
                 }
@@ -143,14 +128,12 @@ namespace CView.BaseballAPI
             return events;
         }
 
-        public Dictionary<string, object> GetEventZipsByLocation(string zip, string lat, string lng)
-        {
+        public Dictionary<string, object> GetEventZipsByLocation(string zip, string lat, string lng) {
             string procedureName = "[dugout].[dbo].[sp_get_event_registration_location_zips]";
             List<string> eventLocationZips = new List<string>();
             string closestGeolocationZip = string.Empty;
 
-            using (SqlCommand cmd = new SqlCommand(procedureName, FactoryDB.Conn))
-            {
+            using (SqlCommand cmd = new SqlCommand(procedureName, FactoryDB.Conn)) {
                 cmd.CommandType = System.Data.CommandType.StoredProcedure;
                 cmd.Parameters.AddWithValue("@zip", zip);
                 cmd.Parameters.AddWithValue("@lat", lat);
@@ -158,10 +141,8 @@ namespace CView.BaseballAPI
 
                 SqlDataReader reader = cmd.ExecuteReader();
 
-                if (reader.HasRows)
-                {
-                    while (reader.Read())
-                    {
+                if (reader.HasRows) {
+                    while (reader.Read()) {
                         eventLocationZips.Add(reader["LocationZip"].ToString());
                         closestGeolocationZip = zip != null ? zip : reader["ClosestGeolocationZip"].ToString();
                     }

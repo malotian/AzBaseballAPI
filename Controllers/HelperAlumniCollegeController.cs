@@ -1,11 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 
-namespace CView.BaseballAPI
-{
+namespace CView.BaseballAPI {
     [ApiController]
     [Route("[controller]")]
-    public class HelperAlumniCollegeController : ControllerBase
-    {
+    public class HelperAlumniCollegeController : ControllerBase {
         [HttpGet(Name = "AlumniCollege")]
         public List<object> Get() {
             FactoryAlumni factoryAlumni = new FactoryAlumni();
@@ -13,4 +11,4 @@ namespace CView.BaseballAPI
             return factoryAlumni.College;
         }
     }
-}                                                                                    
+}
