@@ -51,5 +51,28 @@ namespace CView.BaseballAPI {
             name = name.Replace(" ", "-");
             return name;
         }
+
+        //public List<Dictionary<string, object>> Execute(string sql) {
+        //    using (var cmd = new SqlCommand(sql, Conn))
+        //        return Execute(cmd);
+        //}
+
+        //public List<Dictionary<string, object>> Execute(SqlCommand cmd) {
+        //    if (Conn == null || Conn.State != ConnectionState.Open)
+        //        return null;
+
+        //    cmd.Connection = Conn;
+
+        //    var results = new List<Dictionary<string, object>>();
+        //    using (var reader = cmd.ExecuteReader()) {
+        //        while (reader.Read()) {
+        //            var row = new Dictionary<string, object>();
+        //            for (int i = 0; i < reader.FieldCount; i++)
+        //                row[reader.GetName(i)] = reader.GetValue(i);
+        //            results.Add(row);
+        //        }
+        //    }
+        //    return results;
+        //}
     }
 }
