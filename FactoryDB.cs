@@ -17,7 +17,7 @@ namespace AzBaseballAPI {
         private static readonly string _dbpwd = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "8HzKrwf39Srj"; //"Dutch72reappear91caches";
 
         public FactoryDB(bool newLink = false) {
-            string connectionString = $"Server={_dbhost};Database={_dbname};User Id={_dbuser};Password={_dbpwd}";
+            string connectionString = $"Server={_dbhost};Database={_dbname};User Id={_dbuser};Password={_dbpwd};Encrypt=true;TrustServerCertificate=true;";
             Conn = new SqlConnection(connectionString);
             try {
                 Conn.Open();
