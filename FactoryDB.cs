@@ -18,6 +18,7 @@ namespace AzBaseballAPI {
 
         public FactoryDB(bool newLink = false) {
             string connectionString = $"Server={_dbhost};Database={_dbname};User Id={_dbuser};Password={_dbpwd};Encrypt=true;TrustServerCertificate=true;";
+            Console.WriteLine($"connectionString: {connectionString}");
             Conn = new SqlConnection(connectionString);
             try {
                 Conn.Open();
