@@ -38,7 +38,7 @@ namespace AzBaseballAPI {
             return new OkObjectResult(factoryAlumni.College);
         }
 
-        [Function("BaseballIsBackEvents")]
+        [Function("GetBaseballIsBackEvents")]
         [OpenApiOperation(operationId: "GetBaseballIsBackEvents", tags: new[] { "GetBaseballIsBackEvents" }, Summary = "GetBaseballIsBackEvents", Description = "GetBaseballIsBackEvents", Visibility = OpenApiVisibilityType.Important)]
         public IActionResult GetBaseballIsBackEvents([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req) {
             FactoryAlumni factoryAlumni = new FactoryAlumni();
