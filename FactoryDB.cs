@@ -10,15 +10,15 @@ namespace AzBaseballAPI {
         //private readonly string _dbuser = "FA.WpUser";
         //private readonly string _dbpwd = "8HzKrwf39Srj";
 
-        //private static readonly string _dbhost = Environment.GetEnvironmentVariable("DB_HOST") ?? "4.157.175.137";
-        private static readonly string _dbhost = Environment.GetEnvironmentVariable("DB_HOST") ?? "10.0.0.5";
+        private static readonly string _dbhost = Environment.GetEnvironmentVariable("DB_HOST") ?? "4.157.175.137";
+        //private static readonly string _dbhost = Environment.GetEnvironmentVariable("DB_HOST") ?? "10.0.0.5";
         private static readonly string _dbname = Environment.GetEnvironmentVariable("DB_NAME") ?? "dugout";
         private static readonly string _dbuser = Environment.GetEnvironmentVariable("DB_USER") ?? "FA.WpUser"; //"harjinder";
         private static readonly string _dbpwd = Environment.GetEnvironmentVariable("DB_PASSWORD") ?? "8HzKrwf39Srj"; //"Dutch72reappear91caches";
 
         public FactoryDB(bool newLink = false) {
-            string connectionString = $"Server={_dbhost};Database={_dbname};UserId={_dbuser};Password={_dbpwd};Encrypt=true;TrustServerCertificate=true;";
-            //Console.WriteLine($"connectionString: {connectionString}");
+            string connectionString = $"Server={_dbhost};Database={_dbname};User Id={_dbuser};Password={_dbpwd};Encrypt=true;TrustServerCertificate=true;";
+            Console.WriteLine($"connectionString: {connectionString}");
             Conn = new SqlConnection(connectionString);
             try {
                 Conn.Open();
