@@ -1,7 +1,7 @@
 using System.Data;
 using System.Data.SqlClient;
 
-namespace CView.BaseballAPI {
+namespace AzBaseballAPI {
     public class HelperNationalShowcases {
         public FactoryDB FactoryDB { get; }
         public HelperNationalShowcases() {

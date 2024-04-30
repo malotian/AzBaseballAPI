@@ -1,6 +1,6 @@
 using System.Data.SqlClient;
 
-namespace CView.BaseballAPI {
+namespace AzBaseballAPI {
 
     public class FactoryAlumni {
         public FactoryDB FactoryDB { get; }

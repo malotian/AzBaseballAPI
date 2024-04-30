@@ -1,7 +1,7 @@
 ﻿using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
-namespace CView.BaseballAPI {
+namespace AzBaseballAPI {
 
     public class FactoryDB {
         public SqlConnection Conn { get; private set; }

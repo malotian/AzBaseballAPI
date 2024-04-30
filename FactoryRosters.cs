@@ -1,6 +1,6 @@
 ﻿using System.Data.SqlClient;
 
-namespace CView.BaseballAPI {
+namespace AzBaseballAPI {
     public class FactoryRosters {
         public FactoryDB FactoryDB { get; private set; }
         public List<object> Top100Roster { get; private set; } = new List<object>();

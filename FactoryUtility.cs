@@ -2,7 +2,7 @@ using Newtonsoft.Json;
 using System.Data.SqlClient;
 using System.Text.RegularExpressions;
 
-namespace CView.BaseballAPI {
+namespace AzBaseballAPI {
     public class FactoryUtility {
         public FactoryDB FactoryDB { get; }
 
@@ -65,21 +65,21 @@ namespace CView.BaseballAPI {
                 using (SqlDataReader newsReader = newsCmd.ExecuteReader()) {
                     while (newsReader.Read()) {
                         Dictionary<string, object> newsItem = new Dictionary<string, object> {
-                    { "PostTitle", newsReader["title"].ToString() },
-                    { "PostContent", newsReader["content"].ToString() },
-                    { "PostDate", newsReader["date"].ToString() },
-                    { "PostStatus", "publish" },
-                    { "PostAuthor", 1 }
-                };
+                            { "post_title", newsReader["PostTitle"] },
+                            { "post_content", newsReader["PostContent"] },
+                            { "post_date", newsReader["PostDate"] },
+                            { "post_status", "publish" },
+                            { "post_author", 1 }
+                        };
 
                         int insertedPostId = InsertPost(newsItem);
 
-                        Dictionary<string, string> newsMeta = new Dictionary<string, string> {
-                    { "NewsPressId", newsReader["news_press_id"].ToString() },
-                    { "Source", newsReader["source"].ToString() },
-                    { "Author", newsReader["author"].ToString() },
-                    { "NewsType", newsReader["news_press_type_name"].ToString() }
-                };
+                        Dictionary<string, object> newsMeta = new Dictionary<string, object> {
+                            { "news_press_id", newsReader["NewsPressId"] },
+                            { "source", newsReader["Source"] },
+                            { "author", newsReader["Author"] },
+                            { "news_press_type_name", newsReader["NewsType"] }
+                        };
 
                         UpdatePostMeta(insertedPostId, "FactoryNewsMeta", newsMeta);
                     }
@@ -107,41 +107,41 @@ namespace CView.BaseballAPI {
 
                     while (videoReader.Read()) {
                         Dictionary<string, object> video = new Dictionary<string, object> {
-                        { "VideoName", videoReader["video_name"].ToString() },
-                        { "VideoNameLine1", videoReader["video_name_line1"].ToString() },
-                        { "VideoNameLine2", videoReader["video_name_line2"].ToString() },
-                        { "VideoNameLine_2", videoReader["video_name_line_2"].ToString() },
-                        { "VideoDescription", videoReader["video_description"].ToString() },
-                        { "VideoUrl", videoReader["video_url"].ToString() },
-                        { "VideoLength", videoReader["video_length"].ToString() },
-                        { "VideoThumbnailUrl", videoReader["video_thumbnail_url"].ToString() },
-                        { "ConvertedDate", videoReader["converted_date"].ToString() },
-                        { "VideoId", videoReader["pk_bftv_video"].ToString() },
-                        { "CategoryId", videoReader["fk_bftv_category"].ToString() }
-                    };
+                            { "video_name", videoReader["VideoName"] },
+                            { "video_name_line1", videoReader["VideoNameLine1"] },
+                            { "video_name_line2", videoReader["VideoNameLine2"] },
+                            { "video_name_line_2", videoReader["VideoNameLine_2"] },
+                            { "video_description", videoReader["VideoDescription"] },
+                            { "video_url", videoReader["VideoUrl"] },
+                            { "video_length", videoReader["VideoLength"] },
+                            { "video_thumbnail_url", videoReader["VideoThumbnailUrl"] },
+                            { "converted_date", videoReader["ConvertedDate"] },
+                            { "video_id", videoReader["VideoId"] },
+                            { "category_id", videoReader["CategoryId"] }
+                        };
 
                         string postTitle = StripTags($"{video["VideoName"]}, {video["VideoNameLine1"]}, {video["VideoNameLine2"]}, {video["VideoNameLine_2"]}");
                         string postContent = StripTags(video["VideoDescription"].ToString());
 
                         Dictionary<string, object> videoPost = new Dictionary<string, object> {
-                        { "PostTitle", postTitle },
-                        { "PostContent", postContent },
-                        { "PostDate", video["ConvertedDate"] },
-                        { "PostType", "video" },
-                        { "PostStatus", "publish" },
-                        { "PostAuthor", 1 }
-                    };
+                            { "post_title", postTitle },
+                            { "post_content", postContent },
+                            { "post_date", video["ConvertedDate"] },
+                            { "post_type", "video" },
+                            { "post_status", "publish" },
+                            { "post_author", 1 }
+                        };
 
                         int insertedPostId = InsertPost(videoPost);
 
-                        Dictionary<string, string> videoMeta = new Dictionary<string, string> {
-                        { "VideoId", video["VideoId"].ToString() },
-                        { "VideoThumbnailUrl", video["VideoThumbnailUrl"].ToString() }
-                    };
+                        Dictionary<string, object> videoMeta = new Dictionary<string, object> {
+                            { "video_id", video["VideoId"] },
+                            { "video_thumbnail_url", video["VideoThumbnailUrl"] }
+                        };
 
                         UpdatePostMeta(insertedPostId, "FactoryVideoMeta", videoMeta);
-                        UpdatePostMeta(insertedPostId, "VideoUrl", video["VideoUrl"].ToString());
-                        UpdatePostMeta(insertedPostId, "VideoLength", video["VideoLength"].ToString());
+                        UpdatePostMeta(insertedPostId, "VideoUrl", video["VideoUrl"]);
+                        UpdatePostMeta(insertedPostId, "VideoLength", video["VideoLength"]);
 
                         WpSetObjectTerms(insertedPostId, catMap[Convert.ToInt32(video["CategoryId"])], "Channels");
                     }
@@ -154,16 +154,15 @@ namespace CView.BaseballAPI {
         }
 
         public int InsertPost(Dictionary<string, object> post) {
-            string postTitle = post["PostTitle"].ToString();
-            string postContent = post["PostContent"].ToString();
-            string postDate = post["PostDate"].ToString();
-            string postStatus = post["PostStatus"].ToString();
-            int postAuthor = Convert.ToInt32(post["PostAuthor"]);
+            string postTitle = post["post_title"].ToString();
+            string postContent = post["post_content"].ToString();
+            string postDate = post["post_date"].ToString();
+            string postStatus = post["post_status"].ToString();
+            int postAuthor = Convert.ToInt32(post["post_author"]);
 
-            string query = @"
-        INSERT INTO wp_posts (post_title, post_content, post_date, post_status, post_author) 
-        VALUES (@PostTitle, @PostContent, @PostDate, @PostStatus, @PostAuthor);
-        SELECT SCOPE_IDENTITY();";
+            string query = @"INSERT INTO wp_posts (post_title, post_content, post_date, post_status, post_author) 
+                            VALUES (@PostTitle, @PostContent, @PostDate, @PostStatus, @PostAuthor);
+                            SELECT SCOPE_IDENTITY();";
 
             using (SqlCommand cmd = new SqlCommand(query, FactoryDB.Conn)) {
                 cmd.Parameters.AddWithValue("@PostTitle", postTitle);
@@ -239,13 +238,13 @@ namespace CView.BaseballAPI {
                                 }
 
                                 Dictionary<string, object> testyPost = new Dictionary<string, object> {
-                            { "PostTitle", testyReader["title"].ToString() },
-                            { "PostContent", testyReader["testimonial"].ToString() },
-                            { "PostDate", testyReader["date"].ToString() },
-                            { "PostType", "testimonial" },
-                            { "PostStatus", "publish" },
-                            { "PostAuthor", 1 }
-                        };
+                                    { "post_title", testyReader["title"] },
+                                    { "post_content", testyReader["testimonial"] },
+                                    { "post_date", testyReader["date"] },
+                                    { "post_type", "testimonial" },
+                                    { "post_status", "publish" },
+                                    { "post_author", 1 }
+                                };
 
                                 int insertedPostId = InsertPost(testyPost);
 
